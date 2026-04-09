@@ -59,17 +59,22 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # ─────────────────────────────────────────
-# CORS — allow_credentials MUST be False with allow_origins=["*"]
+# ✅ FIXED CORS (simple + stable)
 # ─────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://ubiquitous-disco-96w4jwv4v4v2755g-3000.app.github.dev",
-    ],
+    allow_origins=["*"],   # simplified to avoid Codespaces issues
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ─────────────────────────────────────────
+# ✅ FIX: handle preflight (OPTIONS)
+# ─────────────────────────────────────────
+@app.options("/{rest_of_path:path}")
+async def preflight_handler():
+    return JSONResponse(status_code=200, content={"ok": True})
 
 # ─────────────────────────────────────────
 # Static files
@@ -100,13 +105,11 @@ async def health():
 
 @app.get("/progress")
 async def progress():
-    """Return live pipeline progress from progress module."""
     return get_progress()
 
 
 @app.post("/idea")
 async def idea(request: Request):
-    """Step-by-step idea structuring via IdeaFlow agent."""
     body = await request.json()
     return generate_idea_flow(body)
 
@@ -117,7 +120,6 @@ async def generate(request: GenerateRequest):
     logger.info(f"[{request_id}] Generating video for prompt: {request.prompt[:50]}")
 
     try:
-        # asyncio.to_thread is correct modern API (Python 3.9+)
         result = await asyncio.to_thread(
             run_pipeline,
             request.prompt,
