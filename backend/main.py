@@ -65,10 +65,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://ubiquitous-disco-96w4jwv4v4v2755g-3000.app.github.dev",
-        "https://ubiquitous-disco-96w4jwv4v4v2755g-8000.app.github.dev",
     ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
