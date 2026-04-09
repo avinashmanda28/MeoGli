@@ -31,7 +31,7 @@ export default function Page(): JSX.Element {
   const MAX_CHARS = 500;
 
   const apiEndpoint = useMemo(() => {
-    return process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    return process.env.NEXT_PUBLIC_API_URL || "https://ubiquitous-disco-96w4jwv4v4v2755g-8000.app.github.dev";
   }, []);
 
   const handleGenerate = useCallback(async (): Promise<void> => {
