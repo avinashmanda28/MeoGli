@@ -62,11 +62,10 @@ export default function Page(): JSX.Element {
       const timeoutId = setTimeout(() => controller.abort(), 60000);
 
       const response = await fetch(`${apiEndpoint}/generate`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
-      });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+});
 
       clearTimeout(timeoutId);
 
