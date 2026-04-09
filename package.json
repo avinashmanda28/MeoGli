@@ -1,0 +1,25 @@
+{
+  "name": "meogli",
+  "version": "1.0.0",
+  "description": "MeoGli is an AI-powered video generation system that converts a simple text prompt into a fully rendered video with motion graphics.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avinashmanda28/MeoGli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/avinashmanda28/MeoGli/issues"
+  },
+  "homepage": "https://github.com/avinashmanda28/MeoGli#readme",
+  "dependencies": {
+    "@remotion/cli": "^4.0.445",
+    "remotion": "^4.0.445"
+  }
+}

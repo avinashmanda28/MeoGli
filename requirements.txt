@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+diffusers
+transformers
+torch
+torchvision
+accelerate
+pillow
+rembg
+onnxruntime
+python-dotenv
